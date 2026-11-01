@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="510" viewBox="0 0 360 510">
+  <title>VELMORTE — Product purchase panel</title>
+  <desc>Editable gothic luxury jewellery product purchase interface with transparent outer background.</desc>
+  <defs>
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#D8C8B5"/>
+      <stop offset="0.45" stop-color="#75665B"/>
+      <stop offset="1" stop-color="#251316"/>
+    </linearGradient>
+  </defs>
+  <!-- Transparent outer canvas; dark panel is intentionally semi-transparent -->
+  <rect x="1" y="1" width="358" height="508" rx="5" fill="#0B0A0B" fill-opacity="0.82" stroke="#75665B" stroke-opacity="0.8"/>
+  <text x="22" y="29" fill="#D8C8B5" font-family="Georgia,serif" font-size="10" letter-spacing="2.8">VELMORTE / THE RELICS</text>
+  <path d="M22 42H338" stroke="#75665B" stroke-width="0.8"/>
+  <text x="22" y="76" fill="#D8C8B5" font-family="Georgia,serif" font-size="23">The Thorn Ring</text>
+  <text x="22" y="98" fill="#A99A8B" font-family="Arial,sans-serif" font-size="10" letter-spacing="1.1">STERLING SILVER · GARNET</text>
+  <!-- Rating -->
+  <g transform="translate(22 119)" fill="#B58B67">
+    <path d="M5 0l1.5 3.4 3.7.3-2.8 2.4.9 3.6L5 7.4 1.7 9.7l.9-3.6L-.2 3.7l3.7-.3z"/>
+    <path d="M19 0l1.5 3.4 3.7.3-2.8 2.4.9 3.6L19 7.4l-3.3 2.3.9-3.6-2.8-2.4 3.7-.3z"/>
+    <path d="M33 0l1.5 3.4 3.7.3-2.8 2.4.9 3.6L33 7.4l-3.3 2.3.9-3.6-2.8-2.4 3.7-.3z"/>
+    <path d="M47 0l1.5 3.4 3.7.3-2.8 2.4.9 3.6L47 7.4l-3.3 2.3.9-3.6-2.8-2.4 3.7-.3z"/>
+    <path d="M61 0l1.5 3.4 3.7.3-2.8 2.4.9 3.6L61 7.4l-3.3 2.3.9-3.6-2.8-2.4 3.7-.3z"/>
+  </g>
+  <text x="100" y="127" fill="#A99A8B" font-family="Arial,sans-serif" font-size="10">4.9 · 28 reviews</text>
+  <text x="22" y="170" fill="#D8C8B5" font-family="Georgia,serif" font-size="27">€ 89.00</text>
+  <text x="22" y="189" fill="#A99A8B" font-family="Arial,sans-serif" font-size="10">Taxes included · Complimentary gift box</text>
+  <path d="M22 204H338" stroke="#75665B" stroke-width="0.8"/>
+  <!-- Size selector -->
+  <text x="22" y="226" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="11" letter-spacing="0.6">RING SIZE</text>
+  <rect x="22" y="237" width="145" height="36" rx="2" fill="none" stroke="#75665B"/>
+  <text x="34" y="259" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="12">Select size</text>
+  <path d="M149 251l5 5 5-5" fill="none" stroke="#D8C8B5" stroke-width="1.2"/>
+  <text x="184" y="226" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="11" letter-spacing="0.6">QUANTITY</text>
+  <rect x="184" y="237" width="154" height="36" rx="2" fill="none" stroke="#75665B"/>
+  <text x="198" y="259" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="16">−</text>
+  <text x="261" y="259" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="12" text-anchor="middle">1</text>
+  <text x="320" y="259" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="16" text-anchor="middle">+</text>
+  <!-- Purchase buttons -->
+  <rect x="22" y="291" width="316" height="42" rx="2" fill="#762635"/>
+  <text x="180" y="317" fill="#F1E6DA" font-family="Arial,sans-serif" font-size="12" letter-spacing="1.5" text-anchor="middle">ADD TO CART</text>
+  <rect x="22" y="342" width="316" height="42" rx="2" fill="none" stroke="#D8C8B5" stroke-width="1"/>
+  <text x="180" y="368" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="12" letter-spacing="1.5" text-anchor="middle">BUY IT NOW</text>
+  <!-- Shipping / reassurance -->
+  <g transform="translate(22 405)" fill="none" stroke="#A99A8B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 8h17v12H1z M18 12h7l5 5v3H18z M22 12v5h8"/>
+    <circle cx="6" cy="22" r="2.5"/><circle cx="24" cy="22" r="2.5"/>
+    <path d="M2 4h11M5 1h7"/>
+  </g>
+  <text x="60" y="416" fill="#D8C8B5" font-family="Arial,sans-serif" font-size="11">Dispatched in 1–3 business days</text>
+  <text x="60" y="431" fill="#A99A8B" font-family="Arial,sans-serif" font-size="10">Tracked delivery · Secure checkout</text>
+  <path d="M22 450H338" stroke="#75665B" stroke-width="0.8"/>
+  <text x="22" y="470" fill="#D8C8B5" font-family="Georgia,serif" font-size="12">A relic made to remain.</text>
+  <text x="22" y="489" fill="#A99A8B" font-family="Arial,sans-serif" font-size="9" letter-spacing="0.5">RETURNS WITHIN 30 DAYS · GIFT-READY PACKAGING</text>
+</svg>

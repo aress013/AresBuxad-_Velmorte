@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#080807" />
+    <meta
+      name="description"
+      content="VELMORTE — All Flesh Rots. A world of gothic romance, relics and forgotten stories."
+    />
+    <title>VELMORTE — All Flesh Rots</title>
+    <link rel="stylesheet" href="styles.css?v=13" />
+    <script>
+      if (window.location.protocol === "file:") {
+        const previewUrl = "http://127.0.0.1:8766/index.html";
+        fetch(previewUrl, { mode: "no-cors", cache: "no-store" })
+          .then(() => window.location.replace(previewUrl))
+          .catch((error) => {
+            console.warn(
+              "VELMORTE: inicia la vista integrada con F5 para reproducir los vídeos.",
+              error,
+            );
+          });
+      }
+    </script>
+    <script src="java.js?v=17" defer></script>
+  </head>
+
+  <body>
+    <main class="viewer" aria-label="VELMORTE">
+      <div class="artboard">
+        <section
+          class="scene scene--intro"
+          id="intro"
+          data-scene="intro"
+          aria-label="VELMORTE introduction"
+        >
+          <video
+            class="scene-video scene-video--intro"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source src="images1/1castillobo 15.44.06.mp4" type="video/mp4" />
+          </video>
+          <button class="scene-play" type="button" hidden>
+            PLAY INTRODUCTION
+          </button>
+          <p class="scene-error" role="alert" hidden>
+            The introduction video could not be loaded.
+          </p>
+          <button
+            class="scene-enter"
+            type="button"
+            aria-label="Reproducir la introducción del castillo"
+          ></button>
+        </section>
+
+        <section
+          class="scene scene--main"
+          id="main"
+          data-scene="main"
+          aria-label="VELMORTE title"
+          hidden
+        >
+          <img
+            class="scene-still scene-still--main"
+            src="images1/castle-last-frame.png"
+            alt=""
+            draggable="false"
+          />
+          <video
+            class="scene-video scene-video--main"
+            poster="images1/castle-last-frame.png"
+            muted
+            playsinline
+            preload="auto"
+            aria-hidden="true"
+          >
+            <source src="images1/1castilloboclip.mp4" type="video/mp4" />
+          </video>
+          <button class="scene-play" type="button" hidden>PLAY VELMORTE</button>
+          <p class="scene-error" role="alert" hidden>
+            The title video could not be loaded.
+          </p>
+          <a
+            class="main-enter"
+            href="#menu"
+            data-scene-link="menu"
+            aria-label="Open the VELMORTE menu"
+          >
+            <h1 class="main-title">Velmorte</h1>
+          </a>
+        </section>
+
+        <section
+          class="scene scene--menu"
+          id="menu"
+          data-scene="menu"
+          aria-label="VELMORTE menu"
+          hidden
+        >
+          <img
+            class="menu-background"
+            src="images1/figma-menu-background-1.png"
+            alt=""
+            draggable="false"
+          />
+          <h1 class="menu-title">Velmorte</h1>
+          <p class="menu-slogan">All flesh rots,</p>
+
+          <img
+            class="menu-post menu-post--left"
+            src="images1/menu-signpost.jpg"
+            alt=""
+          />
+          <img
+            class="menu-post menu-post--right"
+            src="images1/menu-signpost.jpg"
+            alt=""
+          />
+
+          <a
+            class="menu-link menu-link--world"
+            href="#world"
+            data-scene-link="world"
+            aria-label="The World of VELMORTE"
+          >
+            <img src="images1/menu-world-sign.png" alt="" draggable="false" />
+            <span>The World of VELMORTE</span>
+          </a>
+          <a
+            class="menu-link menu-link--relics"
+            href="#relics"
+            data-scene-link="relics"
+            aria-label="The Relics"
+          >
+            <img src="images1/menu-relics-sign.png" alt="" draggable="false" />
+            <span>The Relics</span>
+          </a>
+          <a
+            class="menu-link menu-link--offering"
+            href="#offering"
+            data-scene-link="offering"
+            aria-label="The Offering"
+          >
+            <img
+              src="images1/menu-offering-sign.png"
+              alt=""
+              draggable="false"
+            />
+            <span>The offering</span>
+          </a>
+          <a
+            class="menu-link menu-link--about"
+            href="#about"
+            data-scene-link="about"
+            aria-label="About us"
+          >
+            <img src="images1/menu-about-sign.png" alt="" draggable="false" />
+            <span>About us ...</span>
+          </a>
+        </section>
+
+        <section
+          class="scene scene--world"
+          id="world"
+          data-scene="world"
+          aria-label="The philosophy of VELMORTE"
+          hidden
+        >
+          <video
+            class="scene-video scene-video--world"
+            poster="images1/wp10705368-resident-evil-village-desktop-wallpapers.jpg"
+            autoplay
+            muted
+            playsinline
+            loop
+            preload="none"
+            aria-hidden="true"
+          >
+            <source
+              src="images1/Resident-Evil-Village-SnapYT.App.mp4"
+              type="video/mp4"
+            />
+          </video>
+          <p class="scene-error" role="alert" hidden>
+            The world video could not be loaded.
+          </p>
+          <a
+            class="brand-mark"
+            href="#menu"
+            data-scene-link="menu"
+            aria-label="Back to menu"
+          >
+            Velmorte
+          </a>
+          <h1 class="world-title">The philosophy of Velmorte</h1>
+          <p class="world-slogan">ALL FLESH ROTS,</p>
+          <p class="world-subtitle">Jewellery born from the beauty of decay.</p>
+          <div class="world-copy">
+            <p>Inspired by mortality, gothic beauty and the passage of time,</p>
+            <p>VELMORTE transforms jewellery into lasting relics. Each piece</p>
+            <p>
+              embodies the contrast between fragile flesh and enduring memory —
+            </p>
+            <p>objects designed to remain long after their wearer is gone.</p>
+          </div>
+        </section>
+
+        <section
+          class="scene scene--relics"
+          id="relics"
+          data-scene="relics"
+          aria-label="The Relics collection"
+          hidden
+        >
+          <img
+            class="relics-background"
+            src="images1/relics-background.jpeg"
+            alt=""
+          />
+          <a
+            class="brand-mark"
+            href="#menu"
+            data-scene-link="menu"
+            aria-label="Back to menu"
+          >
+            Velmorte
+          </a>
+          <h1 class="relics-title">The relics</h1>
+          <img class="relics-panel" src="images1/relics-overlay.svg" alt="" />
+          <img
+            class="relics-collection"
+            src="images1/relics-collection.png"
+            alt="A collection of gothic silver jewellery and garnet relics."
+          />
+          <a
+            class="relics-feature-link"
+            href="#offering"
+            data-scene-link="offering"
+            aria-label="Discover the featured thorn ring"
+          ></a>
+        </section>
+
+        <section
+          class="scene scene--offering"
+          id="offering"
+          data-scene="offering"
+          aria-label="The Thorn Ring"
+          hidden
+        >
+          <a
+            class="brand-mark"
+            href="#menu"
+            data-scene-link="menu"
+            aria-label="Back to menu"
+          >
+            Velmorte
+          </a>
+          <img
+            class="offering-backdrop"
+            src="images1/offering-collection.png"
+            alt=""
+          />
+          <img
+            class="offering-base"
+            src="images1/offering-background.svg"
+            alt=""
+          />
+          <img
+            class="offering-shade"
+            src="images1/offering-background-shade.svg"
+            alt=""
+          />
+          <img
+            class="offering-fade"
+            src="images1/offering-lower-fade.svg"
+            alt=""
+          />
+
+          <div class="offering-details">
+            <p class="offering-eyebrow">THE OFFERING / A RELIC TO KEEP</p>
+            <h1 class="offering-title">The Thorn Ring</h1>
+            <p class="offering-tagline">
+              A symbol of devotion, protection and becoming.
+            </p>
+            <div class="offering-description">
+              <p>An antique-inspired silver relic shaped by thorn,</p>
+              <p>shadow and the beauty of what refuses to fade.</p>
+              <p>Made to be discovered, not simply bought.</p>
+            </div>
+            <img
+              class="offering-symbol"
+              src="images1/offering-symbol-details.svg"
+              alt=""
+            />
+            <p class="offering-category">SILVER · THORN · MEMORY</p>
+            <button
+              class="offering-shopping"
+              type="button"
+              disabled
+              aria-describedby="offering-shopping-note"
+            >
+              <img src="images1/offering-shopping-button.svg" alt="" />
+              <span>GO SHOPPING</span>
+            </button>
+            <p class="offering-note" id="offering-shopping-note">
+              The external shop link is coming soon.
+            </p>
+          </div>
+
+          <figure class="offering-product">
+            <div class="offering-product-image">
+              <img src="images1/offering-product.jpeg" alt="" />
+              <img
+                class="offering-ring"
+                src="images1/anell petit_.png"
+                alt="The Thorn Ring"
+              />
+              <img
+                class="offering-frame"
+                src="images1/offering-product-frame.svg"
+                alt=""
+              />
+            </div>
+            <figcaption>A FRAGMENT FROM THE ARCHIVE</figcaption>
+          </figure>
+
+          <footer class="offering-footer">
+            <span>VELMORTE · ALL FLESH ROTS</span>
+            <a href="#relics" data-scene-link="relics">ENTER THE ARCHIVE</a>
+          </footer>
+        </section>
+
+        <section
+          class="scene scene--about"
+          id="about"
+          data-scene="about"
+          aria-label="About VELMORTE"
+          hidden
+        >
+          <img
+            class="about-background"
+            src="images1/about-background.png"
+            alt=""
+          />
+          <a
+            class="brand-mark"
+            href="#menu"
+            data-scene-link="menu"
+            aria-label="Back to menu"
+          >
+            Velmorte
+          </a>
+          <h1 class="about-title">About us</h1>
+          <p class="about-slogan">
+            <span>BEAUTY IN DECAY.</span>
+            <span>ELEGANCE IN ETERNITY.</span>
+          </p>
+          <div class="about-copy">
+            <p>
+              Inspired by gothic architecture, ancient symbolism, romantic decay
+              and the eternal contrast between life and death, VELMORTE explores
+              a different vision of beauty.
+            </p>
+            <p>
+              We believe that beauty does not have to be perfect, pure or
+              everlasting.
+            </p>
+            <p>
+              There is something captivating about imperfection, something
+              poetic about decay and something eternal about the things we leave
+              behind.
+            </p>
+            <p>
+              Our pieces are more than accessories. They are expressions of
+              identity, symbols of individuality and fragments of a world where
+              elegance meets darkness.
+            </p>
+            <p>
+              Drawing inspiration from medieval ornaments, sacred imagery,
+              forgotten relics and dark romanticism, we create a visual universe
+              where every detail carries meaning.
+            </p>
+            <p>Not made to follow trends. Made to leave a mark.</p>
+          </div>
+        </section>
+
+        <div class="transition-cover" aria-hidden="true"></div>
+      </div>
+    </main>
+  </body>
+</html>
