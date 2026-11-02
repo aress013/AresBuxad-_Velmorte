@@ -15,16 +15,23 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isLocalFile) {
     const localStartButton = document.querySelector(".scene-enter");
 
-    if (localStartButton instanceof HTMLButtonElement) localStartButton.hidden = true;
+    if (localStartButton instanceof HTMLButtonElement)
+      localStartButton.hidden = true;
   }
 
-  if (!(artboard instanceof HTMLElement) || !transitionCover || scenes.size === 0) {
+  if (
+    !(artboard instanceof HTMLElement) ||
+    !transitionCover ||
+    scenes.size === 0
+  ) {
     console.error("VELMORTE: no se pudo inicializar la navegación de escenas.");
     return;
   }
 
   function reportVideoError(video, message) {
-    const errorMessage = video.closest("[data-scene]")?.querySelector(".scene-error");
+    const errorMessage = video
+      .closest("[data-scene]")
+      ?.querySelector(".scene-error");
 
     if (errorMessage instanceof HTMLElement) errorMessage.hidden = false;
     console.error(message);
@@ -34,16 +41,69 @@ document.addEventListener("DOMContentLoaded", () => {
   let transitionTimer = 0;
   let isTransitioning = false;
 
-  function updateScale() {
-    const widthScale = window.innerWidth / 1440;
-    const heightScale = window.innerHeight / 1024;
-    const scale =
-      window.innerWidth >= 768
-        ? Math.max(widthScale, heightScale)
-        : Math.min(widthScale, heightScale);
-    artboard.style.setProperty("--scene-scale", String(scale));
+  let sideExtra = 0;
+
+  const fillTargets = [
+    ".scene-video--intro",
+    ".scene-video--main",
+    ".scene-still--main",
+    ".scene-video--world",
+    ".menu-background",
+    ".relics-background",
+    ".about-background",
+    ".offering-backdrop",
+  ];
+  const stretchTargets = [
+    ".offering-base",
+    ".offering-shade",
+    ".offering-fade",
+  ];
+
+  function fitBackgrounds() {
+    const all = document.querySelectorAll(
+      [...fillTargets, ...stretchTargets].join(","),
+    );
+
+    all.forEach((el) => {
+      el.style.translate = "";
+      el.style.scale = "";
+
+      if (window.innerWidth < 768 || sideExtra <= 0) return;
+
+      const width = el.offsetWidth;
+      if (!width) return;
+
+      const needed = 1440 + 2 * sideExtra + 2;
+      const factor = Math.max(1, needed / width);
+      const center = el.offsetLeft + width / 2;
+      const newLeft = center - (width * factor) / 2;
+      const newRight = center + (width * factor) / 2;
+      const lo = 1440 + sideExtra + 1 - newRight;
+      const hi = -sideExtra - 1 - newLeft;
+      const shift = Math.min(Math.max(0, lo), hi);
+      const isStretch = stretchTargets.some((selector) => el.matches(selector));
+
+      el.style.scale = isStretch ? `${factor} 1` : String(factor);
+      el.style.translate = `${shift}px 0`;
+    });
   }
 
+  function updateScale() {
+    const viewport = window.visualViewport;
+    const width = Math.min(
+      window.innerWidth,
+      viewport ? viewport.width : Infinity,
+    );
+    const height = Math.min(
+      window.innerHeight,
+      viewport ? viewport.height : Infinity,
+    );
+    const scale = Math.min(width / 1440, height / 1024);
+
+    artboard.style.setProperty("--scene-scale", String(scale));
+    sideExtra = Math.max(0, (width / scale - 1440) / 2);
+    fitBackgrounds();
+  }
   function playSceneMedia(sceneName) {
     const scene = scenes.get(sceneName);
     const videos = document.querySelectorAll(".scene-video");
@@ -73,20 +133,31 @@ document.addEventListener("DOMContentLoaded", () => {
         playPromise.then(() => {
           if (video.matches(".scene-video--intro")) {
             const startButton = scene?.querySelector(".scene-enter");
-            if (startButton instanceof HTMLButtonElement) startButton.hidden = true;
+            if (startButton instanceof HTMLButtonElement)
+              startButton.hidden = true;
           }
         });
 
         playPromise.catch((error) => {
-          if (error instanceof DOMException && error.name === "AbortError") return;
-          if (error instanceof DOMException && error.name === "NotAllowedError") {
+          if (error instanceof DOMException && error.name === "AbortError")
+            return;
+          if (
+            error instanceof DOMException &&
+            error.name === "NotAllowedError"
+          ) {
             const playButton = scene?.querySelector(".scene-play");
-            if (playButton instanceof HTMLButtonElement) playButton.hidden = false;
-            console.warn("VELMORTE: el navegador requiere interacción para iniciar el vídeo.");
+            if (playButton instanceof HTMLButtonElement)
+              playButton.hidden = false;
+            console.warn(
+              "VELMORTE: el navegador requiere interacción para iniciar el vídeo.",
+            );
             return;
           }
 
-          reportVideoError(video, `VELMORTE: no se pudo reproducir el vídeo de ${sceneName}.`);
+          reportVideoError(
+            video,
+            `VELMORTE: no se pudo reproducir el vídeo de ${sceneName}.`,
+          );
           console.error(error);
         });
       }
@@ -106,13 +177,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     activeScene = sceneName;
+    document.querySelector(".viewer")?.setAttribute("data-scene", sceneName);
+    fitBackgrounds();
     playSceneMedia(sceneName);
 
     return true;
   }
 
   function transitionTo(sceneName, updateAddress = true) {
-    if (!scenes.has(sceneName) || sceneName === activeScene || isTransitioning) return;
+    if (!scenes.has(sceneName) || sceneName === activeScene || isTransitioning)
+      return;
 
     isTransitioning = true;
     transitionCover.classList.add("is-transitioning");
@@ -153,10 +227,16 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("hashchange", showAddressScene);
   window.addEventListener("popstate", showAddressScene);
   window.addEventListener("resize", updateScale);
+  window.addEventListener("orientationchange", updateScale);
+  if (window.visualViewport)
+    window.visualViewport.addEventListener("resize", updateScale);
   const introVideo = document.querySelector(".scene-video--intro");
   const introStartButton = document.querySelector(".scene-enter");
 
-  if (introVideo instanceof HTMLVideoElement && introStartButton instanceof HTMLButtonElement) {
+  if (
+    introVideo instanceof HTMLVideoElement &&
+    introStartButton instanceof HTMLButtonElement
+  ) {
     const startIntroVideo = () => {
       if (isLocalFile) return;
       if (!introVideo.paused) return;
@@ -168,23 +248,38 @@ document.addEventListener("DOMContentLoaded", () => {
       const playPromise = introVideo.play();
 
       if (playPromise) {
-        playPromise.then(() => {
-          introStartButton.hidden = true;
-        }).catch((error) => {
-          if (error instanceof DOMException && error.name === "NotAllowedError") {
-            const fallbackButton = introVideo.closest("[data-scene]")?.querySelector(".scene-play");
-            if (fallbackButton instanceof HTMLButtonElement) fallbackButton.hidden = false;
-            console.warn("VELMORTE: el navegador requiere interacción para iniciar el vídeo.");
-            return;
-          }
+        playPromise
+          .then(() => {
+            introStartButton.hidden = true;
+          })
+          .catch((error) => {
+            if (
+              error instanceof DOMException &&
+              error.name === "NotAllowedError"
+            ) {
+              const fallbackButton = introVideo
+                .closest("[data-scene]")
+                ?.querySelector(".scene-play");
+              if (fallbackButton instanceof HTMLButtonElement)
+                fallbackButton.hidden = false;
+              console.warn(
+                "VELMORTE: el navegador requiere interacción para iniciar el vídeo.",
+              );
+              return;
+            }
 
-          reportVideoError(introVideo, "VELMORTE: no se pudo reproducir el vídeo de introducción.");
-          console.error(error);
-        });
+            reportVideoError(
+              introVideo,
+              "VELMORTE: no se pudo reproducir el vídeo de introducción.",
+            );
+            console.error(error);
+          });
       }
     };
 
-    introVideo.closest("[data-scene]")?.addEventListener("pointerdown", startIntroVideo);
+    introVideo
+      .closest("[data-scene]")
+      ?.addEventListener("pointerdown", startIntroVideo);
     introStartButton.addEventListener("click", startIntroVideo);
   }
 
@@ -200,7 +295,10 @@ document.addEventListener("DOMContentLoaded", () => {
     video.addEventListener(
       "error",
       () => {
-        reportVideoError(video, `VELMORTE: no se pudo cargar el vídeo de ${video.closest("[data-scene]")?.id}.`);
+        reportVideoError(
+          video,
+          `VELMORTE: no se pudo cargar el vídeo de ${video.closest("[data-scene]")?.id}.`,
+        );
       },
       { once: true },
     );
@@ -208,10 +306,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".scene-play").forEach((button) => {
     button.addEventListener("click", () => {
-      const video = button.closest("[data-scene]")?.querySelector(".scene-video");
+      const video = button
+        .closest("[data-scene]")
+        ?.querySelector(".scene-video");
 
       if (!(video instanceof HTMLVideoElement)) {
-        console.error("VELMORTE: no se encontró el vídeo para el botón de reproducción.");
+        console.error(
+          "VELMORTE: no se encontró el vídeo para el botón de reproducción.",
+        );
         return;
       }
 
@@ -222,12 +324,14 @@ document.addEventListener("DOMContentLoaded", () => {
       const playPromise = video.play();
       if (!playPromise) return;
 
-      playPromise.then(() => {
-        button.hidden = true;
-      }).catch((error) => {
-        reportVideoError(video, "VELMORTE: no se pudo reproducir el vídeo.");
-        console.error(error);
-      });
+      playPromise
+        .then(() => {
+          button.hidden = true;
+        })
+        .catch((error) => {
+          reportVideoError(video, "VELMORTE: no se pudo reproducir el vídeo.");
+          console.error(error);
+        });
     });
   });
 

@@ -104,7 +104,10 @@ body {
   padding: 10px 14px;
   color: #f2eeee;
   background: rgb(8 8 7 / 85%);
-  font: 16px/1.4 Georgia, "Times New Roman", serif;
+  font:
+    16px/1.4 Georgia,
+    "Times New Roman",
+    serif;
 }
 
 .scene-error[hidden] {
@@ -120,7 +123,10 @@ body {
   border: 1px solid rgb(255 255 255 / 70%);
   color: #fff;
   background: rgb(8 8 7 / 78%);
-  font: 16px/1 "Cormorant Garamond", Georgia, serif;
+  font:
+    16px/1 "Cormorant Garamond",
+    Georgia,
+    serif;
   letter-spacing: 0.12em;
   transform: translate(-50%, -50%);
   cursor: pointer;
@@ -192,7 +198,10 @@ body {
   left: 0;
   color: rgb(255 255 255 / 78%);
   content: "CLICK TO ENTER";
-  font: 14px/1 "Cormorant Garamond", Georgia, serif;
+  font:
+    14px/1 "Cormorant Garamond",
+    Georgia,
+    serif;
   letter-spacing: 0.2em;
   text-align: center;
   text-shadow: 0 1px 8px #000;
@@ -228,14 +237,11 @@ body {
     scale: 2.093;
   }
 }
-
 .menu-background {
-  position: absolute;
   top: -60px;
   left: -291px;
   width: 1924px;
   height: 1084px;
-  object-fit: cover;
 }
 
 .menu-title {
@@ -765,7 +771,8 @@ body {
   right: 0;
   left: 0;
   height: 1px;
-  background: url("images1/offering-footer-rule.svg") center / 100% 1px no-repeat;
+  background: url("images1/offering-footer-rule.svg") center / 100% 1px
+    no-repeat;
   content: "";
 }
 
@@ -1286,5 +1293,54 @@ a:focus-visible {
 
   .about-copy p {
     margin: 0 0 18px;
+  }
+}
+@media (min-width: 768px) {
+  .viewer::before {
+    position: absolute;
+    inset: -40px;
+    background: center / cover no-repeat;
+    content: "";
+    filter: blur(28px) brightness(0.45);
+    pointer-events: none;
+  }
+
+  .viewer[data-scene="intro"]::before,
+  .viewer[data-scene="main"]::before {
+    background-image: url("images1/castle-last-frame.png");
+  }
+
+  .viewer[data-scene="menu"]::before {
+    background-image: url("images1/figma-menu-background-1.png");
+  }
+
+  .viewer[data-scene="world"]::before {
+    background-image: url("images1/wp10705368-resident-evil-village-desktop-wallpapers.jpg");
+  }
+
+  .viewer[data-scene="relics"]::before {
+    background-image: url("images1/relics-background.jpeg");
+  }
+
+  .viewer[data-scene="offering"]::before {
+    background-image: url("images1/offering-collection.png");
+  }
+
+  .viewer[data-scene="about"]::before {
+    background-image: url("images1/about-background.png");
+  }
+}
+@media (min-width: 768px) {
+  .artboard,
+  .scene {
+    overflow: visible;
+  }
+
+  .artboard {
+    clip-path: inset(0 -3000px);
+  }
+
+  .transition-cover {
+    inset: 0 -3000px;
   }
 }
